@@ -5,15 +5,17 @@ import Admin from './pages/Admin';
 import Door from './pages/Door';
 import Home from './pages/Home';
 import AuthContextProvider from './context/AuthContext';
+import Signup from './pages/Signup';
 
 function App() {
   return (
     <div className="App">
-      <h1>LinKeys</h1>
       <AuthContextProvider>
         <BrowserRouter>
+          <h1>Nav</h1>
           <Routes>
-            <Route path='/*' element={<Home />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<Signup />} />
             <Route path='/:usr' element={<Door />} />
             <Route path='/admin/*' element={<Admin />} />
           </Routes>

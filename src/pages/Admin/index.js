@@ -8,7 +8,7 @@ import SettingsContainer from './containers/SettingsContainer';
 const Admin = () => {
   return (
     <Routes>
-      <Route path='/login' element={<LoginContainer />} />
+      <Route path='/' element={<LoginContainer />} />
       <Route path='/dashboard' element={<DashboardContainer />} />
       <Route path='/settings' element={<SettingsContainer />} />
       <Route path='*' element={<ErrorPage />} />
