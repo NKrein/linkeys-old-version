@@ -9,7 +9,7 @@ const SignupContainer = () => {
   const [dataForm, setDataForm] = useState({});
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
-  const { signUp, currentUser } = useContext(AuthContext);
+  const { signUp, currentUser, userUpdate, emailVerification } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setDataForm({
@@ -22,9 +22,17 @@ const SignupContainer = () => {
     e.preventDefault();
     signUp(dataForm.email, dataForm.password).then( () => {
       setError('');
-      setSuccess('Éxito! Verifica tu email.');
+      userUpdate(dataForm.name).then( () => setSuccess('Perfil actualizado.')).catch((err) => {
+        setError('Error al cambiar el nombre de perfil');
+        console.log('Error al cambiar el nombre de perfil ->', err)
+      });
+      emailVerification().then(() => setSuccess('Todo correcto. Porfavor verifica tu e-mail.')).catch((err) => {
+        setError('Error al mandar verificación de e-mail.');
+        console.log('Error al mandar verificación de e-mail ->', err)
+      })
+      setSuccess('Éxito!');
     }).catch( err => {
-      setError(`Error al registrar usuario. (${err.message})`);
+      setError(`Error al crear cuenta. (${err.message})`);
     })
   }
 
@@ -38,7 +46,7 @@ const SignupContainer = () => {
       {error && <Alert variant='warning'>{error}</Alert>}
       {currentUser?
         <UserWarning /> :
-        <UserForm handleChange={handleChange} handleSubmit={handleSubmit} title='Registrarse' repassword isInvalid={isInvalid()} />
+        <UserForm handleChange={handleChange} handleSubmit={handleSubmit} title='Registrarme' signUp isInvalid={isInvalid()} />
       }
     </>
   )
