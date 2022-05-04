@@ -4,12 +4,12 @@ import 'firebase/storage';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDRkkAAaEHCiIuOEl7OKdJcqZtdpMQ_hUo",
-  authDomain: "linkeys-31160.firebaseapp.com",
-  projectId: "linkeys-31160",
-  storageBucket: "linkeys-31160.appspot.com",
-  messagingSenderId: "959096005859",
-  appId: "1:959096005859:web:adca25ca0b44e6cfd9d1d6"
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
